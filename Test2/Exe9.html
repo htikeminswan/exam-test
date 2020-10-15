@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Toggler</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<style>
+		p{
+			margin-top:20px;
+			margin-left: 10px;
+			padding:5px;
+			border:2px solid red;
+		}
+
+</style>
+</head>
+<body>
+<h4 onclick="myFunction()">show/hide</h4>
+
+<p class="para"><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
+
+<script>
+function myFunction() {
+  var x = document.querySelector(".para");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
