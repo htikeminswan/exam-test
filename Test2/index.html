@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+
+
+	<style type="text/css" src="script.js">
+		*{
+	margin:0;
+	padding:0;
+}
+
+.calender{
+	
+	max-width:600px;
+	margin:1em auto;
+	padding:.5em 0;
+
+
+
+}
+ #current_weekday{
+	text-align: center;
+	color:red;
+}
+ .calender__info{
+ 		background-color:cyan;
+		display:flex;
+		align-items:center;
+		padding:0 2em;
+		font-size: 1.2em;
+		text-transform: uppercase;
+
+	}
+.calender__pre,.calender__next{
+		
+		cursor: pointer;
+		font-size:1.4em;
+	}
+.calender__pre{
+		margin-right: auto;
+		
+	}
+.calender__next{
+		margin-left: auto;
+	}
+.calender-week,#dates{
+	display:grid;
+	grid-template-columns: repeat(7,1fr);
+	grid-gap:20px;
+}
+.calender__month{
+	padding:5em 1em;
+}
+.calender_day{
+	text-align: center;
+	line-height: 2;
+}
+.today{
+	background-color: lightcoral;
+	color: white;
+	width:50%;
+	border-radius:50%;
+	margin:auto;
+}
+.first_three_day{
+	opacity: .0;
+
+}
+	</style>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+	<title>Calendar Interactive</title>
+</head>
+<body>
+
+	<h1 id="current_weekday"></h1>
+	<div class="calender">
+		<div class="calender__info">
+			<div class="calender__pre" id="pre-month">&#9664;</div>
+			
+			<div class="calender-day" id="day"> </div>
+			<div class="calender-month" id="month"> </div>
+			<div class="calender-year" id="year"></div>
+			<i class="far fa-calendar-alt" style="padding:0 2rem"></i>
+			<div class="calender__next" id="next-month">&#9654;</div>
+		</div>
+
+		<div class="calender-week">
+			<div class="calender_day">Mon</div>
+			<div class="calender_day">Tue</div>
+			<div class="calender_day">Wed</div>
+			<div class="calender_day">Thu</div>
+			<div class="calender_day">Fri</div>
+			<div class="calender_day" style="color:red">Sat</div>
+			<div class="calender_day" style="color:red">Sun</div>
+		</div>
+		<div class="calender-date" id="dates"></div>
+	</div>
+
+	<!-- java script -->
+	<script type="text/javascript">
+		let monthNames=['January','February','March','april','May','June','july','Aguest',
+				'September','October','November','December'];
+		 var weekday = new Array(7);
+					  weekday[0] = "Sunday";
+					  weekday[1] = "Monday";
+					  weekday[2] = "Tuesday";
+					  weekday[3] = "Wednesday";
+					  weekday[4] = "Thursday";
+					  weekday[5] = "Friday";
+					  weekday[6] = "Saturday";
+
+
+			let currentDate=new Date();
+			let currentDay=currentDate.getDate();
+			let MonthNumber=currentDate.getMonth();
+			let currentYear=currentDate.getFullYear();
+
+			
+			let date=document.getElementById('dates');
+			let month=document.getElementById('month');
+			let year=document.getElementById('year');
+			
+			
+			document.getElementById("current_weekday").innerHTML=weekday[currentDate.getDay()];
+			document.getElementById("day").innerHTML=currentDay+'-';
+			document.getElementById("month").innerHTML=monthNames[9]+'-';
+			document.getElementById("year").innerHTML=currentYear;
+			
+			writeMonth(MonthNumber);
+
+			function writeMonth(month){
+				for(let i=startDay();i>0;i--){
+					dates.innerHTML+=`<div class="calender_day first_three_day">${getTotalDays(MonthNumber-1)}</div>`;
+					
+				}
+				for(let i=1;i<=getTotalDays(month);i++){
+					if(i==currentDay){
+						dates.innerHTML+=`<div class="calender_day  today">${i}</div>`;	
+					}else
+					{
+						dates.innerHTML+=`<div class="calender_day">${i}</div>`;	
+					}
+					
+				}
+
+			}
+			function getTotalDays(month){
+				if(month==9){
+					return 31;
+				}
+
+			}
+			
+			function startDay(){
+				let start=new Date(currentYear,MonthNumber,1);
+				//console.log(start.getDay());
+				return ((start.getDay()-1)==-1)? 6:start.getDay()-1;
+
+
+			}
+			
+	</script>
+
+</body>
+</html>
